@@ -1,0 +1,79 @@
+# Summary
+
+We want to create a recipe creating/sharing and grocery list app. You’ll be planning out what tables we’ll need, what information they’ll store, and how the data will relate to each other.
+
+## Features
+
+1. users can sign into the app with their email and password
+2. users can create recipes with ingredients and instructions
+3. recipes can be marked as public or private
+4. users can view other people’s recipes
+5. ingredients from recipes can be added to user’s grocery lists
+6. users can create their own occasions and assign recipes to occasions
+
+# Tables: 
+
+Users: 
+- user_id
+- name
+- email
+- password
+- created
+
+Recipe:
+- recipe_id
+- ``user_id``
+- instructions
+- created
+- IsPublic
+
+ingredients:
+- ``ingredient_id``
+- name
+
+Grocery_list:
+- grocery_list_id
+- ``user_id``
+- created
+- status: toGet, purchased
+
+occasions: 
+- occasion_id
+- ``user_id``
+- occasion
+
+
+## Bridge Tables
+
+recipe_ingredients:
+- id
+- ``recipe_id``
+- ``ingredient_id``
+- amount
+
+grocery_list_ingredients
+- id
+- ``grocery_list_id``
+- ``ingredient_id``
+- amount
+
+occasions_recipes
+- id
+- ``occasion_id``
+- ``recipe_id``
+
+# Relationships
+
+### One-to-One
+
+### One-to-many
+- user => recipes
+- user => ingredients
+- ingredients => recipes
+- user => grocery list 
+- occasions => recipes
+
+### Many-to-many
+- ingredients => grocery list
+- recipes => occasions
+
